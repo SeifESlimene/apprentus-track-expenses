@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import RightMenu from "./components/RightMenu";
+import LeftMenu from "./components/LeftMenu";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Switch>
+        <Route path="/expense">
+          <div style={{ display: "flex", height: "100%" }}>
+            <LeftMenu />
+            <RightMenu />
+          </div>
+        </Route>
+        <Route path="/list">
+          <div style={{ display: "flex" }}>
+            <LeftMenu />
+            <RightMenu />
+          </div>
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

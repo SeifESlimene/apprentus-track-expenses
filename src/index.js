@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+// Navigation
+import { BrowserRouter } from "react-router-dom";
+// Import Kea Context
+import { resetContext, getContext } from "kea";
+// Import Provider
+import { Provider } from "react-redux";
+// Font Awesome
+import "@fortawesome/fontawesome-free/css/all.min.css";
+// Bootstrap
+import "bootstrap-css-only/css/bootstrap.min.css";
+// Material Design For Bootstrap
+import "mdbreact/dist/css/mdb.css";
+// Our Main App
+import App from "./App";
+import "./App.css";
+import "antd/dist/antd.css";
+
+// Reset Kea Context
+resetContext();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={getContext().store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  // </React.StrictMode>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
