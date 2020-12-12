@@ -1,53 +1,46 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { MDBIcon } from "mdbreact";
+// import { MDBIcon } from "mdbreact";
+import CustomInput from './CustomInput'
 
 function Calendar({ SetDateHeader, inForm }) {
-  // Handle Click
-  const [click, setClick] = useState(false);
-  // Handle Dates
   const [date, setDate] = useState(undefined);
-  // Handle Calendar Open
+  const [isClicked, setIsClicked] = useState(false);
   const handleCalendarOpen = () => {
-    setClick(true);
+    setIsClicked(true);
   };
-  // handle Date
-  const handleSetDate = (date) => {
-    setDate(date);
-    SetDateHeader(date);
-  };
-  // Handle Calendar Close
   const handleCalendarClose = () => {
-    setClick(false);
+    setIsClicked(false);
   };
-  // Our Custom Input
-  const ExampleCustomInput = ({ value, onClick }) => {
-    return (
-      
-      <button
-        className="example-custom-input"
-        style={{ width: "225px", padding: "10px 20px" }}
-        onClick={onClick}
-      >
-        <MDBIcon far icon="calendar" />
-        <span>{value || "Select a date"}</span>
+  // const CustomInput = ({ value, onClick, click }, ref) => {
+  //   return (
+  //     <button
+  //       className="example-custom-input"
+  //       style={{ width: "225px", padding: "10px 20px" }}
+  //       onClick={onClick}
+  //     >
+  //       <MDBIcon far icon="calendar" />
+  //       <span>{value || "Select a date"}</span>
 
-        {click ? (
-          <MDBIcon className="rotateChev" icon="chevron-up" />
-        ) : (
-          <MDBIcon className="rotateChev" icon="chevron-down" />
-        )}
-      </button>
-    );
-  };
+  //       {click ? (
+  //         <MDBIcon className="rotateChev" icon="chevron-up" />
+  //       ) : (
+  //         <MDBIcon className="rotateChev" icon="chevron-down" />
+  //       )}
+  //     </button>
+  //   );
+  // };
+  // const ForwardCustomInput = React.forwardRef(CustomInput);
   return (
     <div>
       <DatePicker
         selected={date}
-        onChange={handleSetDate}
+        onChange={(date) => {
+          setDate(date);
+        }}
         dateFormat="MMMM - yyyy"
-        customInput={<ExampleCustomInput />}
+        customInput={<CustomInput isClicked={isClicked} />}
         showMonthYearPicker
         showFullMonthYearPicker
         showPopperArrow={false}

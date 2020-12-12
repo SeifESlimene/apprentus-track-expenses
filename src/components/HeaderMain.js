@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { MDBBox } from "mdbreact";
 import Calendar from "./Calendar";
 import { Switch, Route } from "react-router-dom";
 
-function HeaderMain({ setDateExpense }) {
-  const [dateHeader, SetDateHeader] = useState(undefined);
-  // handle Date
-  setDateExpense && ((date) => setDateExpense(dateHeader))();
+function HeaderMain() {
   return (
     <div>
       <div
@@ -42,7 +39,7 @@ function HeaderMain({ setDateExpense }) {
         <MDBBox display="flex" alignItems="center">
           <Switch>
             <Route path="/list">
-              <Calendar SetDateHeader={SetDateHeader} />
+              <Calendar/>
             </Route>
           </Switch>
         </MDBBox>

@@ -13,6 +13,7 @@ function ListExpenses() {
   const [loading, setLoading] = useState(true);
   const [dateExpense, setDateExpense] = useState(undefined);
   useEffect(() => {
+    console.log("inside");
     setLoading(false);
     const month = moment(dateExpense).format("MM");
     const year = moment(dateExpense).format("YYYY");
@@ -20,18 +21,32 @@ function ListExpenses() {
       setExpenses(data);
       setLoading(false);
     });
-    return () => {};
   }, [dateExpense]);
   const arrayAmount = expenses.map((entry) => {
     return entry.amount;
   });
+  const style1 = {
+    maxHeight: "481px",
+    overflow: "auto",
+    padding: "0 10px 0 0",
+    display: "Flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  };
+  const style2 = {
+    maxHeight: "481px",
+    overflow: "auto",
+    padding: "0 10px 0 0",
+  };
+  console.log("fuck", dateExpense);
   return (
     <div
       style={{
         backgroundColor: "#F1F2F7",
       }}
     >
-      <HeaderMain setDateExpense={setDateExpense} />
+      <HeaderMain />
       <MDBBox
         display="flex"
         className="mt-5 mb-3"
@@ -66,12 +81,8 @@ function ListExpenses() {
         </div>
       </MDBBox>
       <div
-      className="scrollbar scrollbar-orange bordered-orange thin"
-        style={{
-          maxHeight: "481px",
-          overflow: "auto",
-          padding: "0 10px 0 0"
-        }}
+        className="scrollbar scrollbar-orange bordered-orange thin"
+        style={expenses.length === 0 ? style1 : style2}
       >
         {!loading ? (
           expenses.length ? (
