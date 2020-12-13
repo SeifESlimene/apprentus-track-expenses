@@ -1,10 +1,14 @@
 import React from "react";
 import { MDBIcon } from "mdbreact";
 import { DeleteOutlined } from "@ant-design/icons";
-
-function ExpenseItem({ name, date, amount, approval }) {
-  const handleUpdate = () => {
-    console.log("Update");
+import { Link } from "react-router-dom";
+import { deleteExpense } from "../actions/expense_actions";
+import { useDispatch } from "react-redux";
+function ExpenseItem({ name, date, amount, approval, id, year, month }) {
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    console.log(id);
+    dispatch(deleteExpense(id, month, year));
   };
   return (
     <div
@@ -126,12 +130,17 @@ function ExpenseItem({ name, date, amount, approval }) {
               marginRight: "5px",
             }}
           >
-            <MDBIcon
-              far
-              icon="edit"
-              onClick={handleUpdate}
-              style={{ color: "#77B6FF", fontSize: "22px", cursor: "pointer" }}
-            />
+            <Link to={`/expense?number=${id}`}>
+              <MDBIcon
+                far
+                icon="edit"
+                style={{
+                  color: "#77B6FF",
+                  fontSize: "22px",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
           </div>
           <div
             style={{
@@ -145,6 +154,7 @@ function ExpenseItem({ name, date, amount, approval }) {
             }}
           >
             <DeleteOutlined
+              onClick={handleDelete}
               style={{ color: "#B9BDC9", fontSize: "22px", cursor: "pointer" }}
             />
           </div>

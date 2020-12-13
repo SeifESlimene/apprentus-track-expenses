@@ -10,7 +10,7 @@ function Main() {
         <Route path="/expense">
           <div
             style={{
-              height: "calc(100vh - 150px)",
+              minHeight: "calc(100vh - 150px)",
               backgroundColor: "#F1F2F7",
               padding: "100px 100px 0",
             }}
@@ -21,7 +21,7 @@ function Main() {
         <Route path="/list">
           <div
             style={{
-              height: "calc(100vh - 150px)",
+              minHeight: "calc(100vh - 150px)",
               backgroundColor: "#F1F2F7",
               padding: "100px 100px 0",
             }}

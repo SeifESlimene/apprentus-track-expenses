@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function RightMenu() {
+  const [orangeStroke, setOrangeStroke] = useState("#B9BDC9");
+  const onMouseEnter = () => {
+    setOrangeStroke("rgb(255, 72, 14)");
+  };
+  const onMouseLeave = () => {
+    setOrangeStroke("#B9BDC9");
+  };
   return (
     <div
       style={{
@@ -44,7 +51,7 @@ function RightMenu() {
             fontSize: "20px",
           }}
         >
-          Great Ezeagu
+          John Doe
         </div>
         <div
           style={{
@@ -59,6 +66,8 @@ function RightMenu() {
         >
           <Link
             to="/expense"
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             style={{
               height: "100%",
               width: "100%",
@@ -81,7 +90,7 @@ function RightMenu() {
                 y1="26.5"
                 x2="37.5"
                 y2="48.5"
-                stroke="#B9BDC9"
+                stroke={orangeStroke}
                 strokeWidth="3"
                 strokeLinecap="round"
               />
@@ -90,7 +99,7 @@ function RightMenu() {
                 y1="37.5"
                 x2="48.5"
                 y2="37.5"
-                stroke="#B9BDC9"
+                stroke={orangeStroke}
                 strokeWidth="3"
                 strokeLinecap="round"
               />
@@ -100,7 +109,7 @@ function RightMenu() {
                 width="74"
                 height="74"
                 rx="14.5"
-                stroke="#B9BDC9"
+                stroke={orangeStroke}
                 strokeDasharray="4 4"
               />
             </svg>

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MDBBox } from "mdbreact";
 import HeaderMain from "../components/HeaderMain";
 import ExpenseItem from "../components/ExpenseItem";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { expense_selectors } from "../selectors/expense_selectors";
+import { fetchExpense } from "../actions/expense_actions";
 
 function ListExpenses() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchExpense());
+  }, [dispatch]);
   const expenses = useSelector(expense_selectors);
   const arrayAmount = expenses.map((entry) => {
     return entry.amount;
@@ -45,7 +50,7 @@ function ListExpenses() {
             fontSize: "20px",
           }}
         >
-          {expenses ? moment(expenses.date).format("MMMM YYYY") : ""}
+          {expenses.length ? moment(expenses[0].date).format("MMMM YYYY") : ""}
         </div>
         <div
           style={{
@@ -69,32 +74,34 @@ function ListExpenses() {
         className="scrollbar scrollbar-orange bordered-orange thin"
         style={expenses.length === 0 ? style1 : style2}
       >
-         { expenses.length ? (
-            <>
-              {expenses.map((entry, key) => {
-                return (
-                  <ExpenseItem
-                    key={key}
-                    name={entry.name}
-                    amount={entry.amount + "€"}
-                    approval={entry.approved}
-                    date={moment(entry.date).format("DD MMMM YYYY")}
-                  />
-                );
-              })}
-            </>
-          ) : (
-            <div
-              style={{
-                color: "#B9BDC9",
-                fontSize: "20px",
-                margin: "25px",
-              }}
-            >
-              <span>No Expenses For This Month</span>
-            </div>
-          )}
-          
+        {expenses.length ? (
+          <>
+            {expenses.map((entry, key) => {
+              return (
+                <ExpenseItem
+                  key={key}
+                  id={entry._id}
+                  name={entry.name}
+                  amount={entry.amount + "€"}
+                  approval={entry.approved}
+                  date={moment(entry.date).format("DD MMMM YYYY")}
+                  year={moment(entry.date).format("YYYY")}
+                  month={moment(entry.date).format("MM")}
+                />
+              );
+            })}
+          </>
+        ) : (
+          <div
+            style={{
+              color: "#B9BDC9",
+              fontSize: "20px",
+              margin: "25px",
+            }}
+          >
+            <span>No Expenses For This Month</span>
+          </div>
+        )}
       </div>
     </div>
   );

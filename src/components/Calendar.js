@@ -1,19 +1,20 @@
 import React, { useState, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { MDBIcon } from "mdbreact";
 import CustomInput from "./CustomInput";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchExpense } from "../actions/expense_actions";
 import moment from "moment";
 
 function Calendar({ SetDateHeader, inForm }) {
   const dispatch = useDispatch();
+  const [date, setDate] = useState(undefined);
   const handleChange = useCallback(
     (date) => {
       const year = moment(date).format("YYYY");
       const month = moment(date).format("MM");
       dispatch(fetchExpense(month, year));
+      setDate(date);
     },
     [dispatch]
   );
@@ -24,29 +25,10 @@ function Calendar({ SetDateHeader, inForm }) {
   const handleCalendarClose = () => {
     setIsClicked(false);
   };
-  // const CustomInput = ({ value, onClick, click }, ref) => {
-  //   return (
-  //     <button
-  //       className="example-custom-input"
-  //       style={{ width: "225px", padding: "10px 20px" }}
-  //       onClick={onClick}
-  //     >
-  //       <MDBIcon far icon="calendar" />
-  //       <span>{value || "Select a date"}</span>
-
-  //       {click ? (
-  //         <MDBIcon className="rotateChev" icon="chevron-up" />
-  //       ) : (
-  //         <MDBIcon className="rotateChev" icon="chevron-down" />
-  //       )}
-  //     </button>
-  //   );
-  // };
-  // const ForwardCustomInput = React.forwardRef(CustomInput);
   return (
     <div>
       <DatePicker
-        // selected={date}
+        selected={date}
         onChange={(date) => handleChange(date)}
         dateFormat="MMMM - yyyy"
         customInput={<CustomInput isClicked={isClicked} />}
