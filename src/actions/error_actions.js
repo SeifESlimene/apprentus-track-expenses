@@ -1,4 +1,4 @@
-import { ADD_ERROR, CLEAR_ERRORS } from "./types";
+import { ADD_ERROR } from "./types";
 
 export const addErrorMessage = (e) => {
   const {
@@ -8,8 +8,4 @@ export const addErrorMessage = (e) => {
   } = e;
 
   return { type: ADD_ERROR, payload: error };
-};
-
-export const clearErrorMessages = (error) => {
-  return { type: CLEAR_ERRORS };
 };

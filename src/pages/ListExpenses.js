@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { MDBBox } from "mdbreact";
 import HeaderMain from "../components/HeaderMain";
 import ExpenseItem from "../components/ExpenseItem";
-import Expenses from "../api/ExpenseApi";
 import moment from "moment";
-import { Spin, Space } from "antd";
-
-const { getExpenses } = Expenses;
+import { useSelector } from "react-redux";
+import { expense_selectors } from "../selectors/expense_selectors";
 
 function ListExpenses() {
-  const [expenses, setExpenses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [dateExpense, setDateExpense] = useState(undefined);
-  useEffect(() => {
-    console.log("inside");
-    setLoading(false);
-    const month = moment(dateExpense).format("MM");
-    const year = moment(dateExpense).format("YYYY");
-    getExpenses(month, year).then((data) => {
-      setExpenses(data);
-      setLoading(false);
-    });
-  }, [dateExpense]);
+  const expenses = useSelector(expense_selectors);
   const arrayAmount = expenses.map((entry) => {
     return entry.amount;
   });
@@ -39,7 +25,6 @@ function ListExpenses() {
     overflow: "auto",
     padding: "0 10px 0 0",
   };
-  console.log("fuck", dateExpense);
   return (
     <div
       style={{
@@ -60,7 +45,7 @@ function ListExpenses() {
             fontSize: "20px",
           }}
         >
-          {dateExpense ? moment(dateExpense).format("MMMM YYYY") : ""}
+          {expenses ? moment(expenses.date).format("MMMM YYYY") : ""}
         </div>
         <div
           style={{
@@ -84,8 +69,7 @@ function ListExpenses() {
         className="scrollbar scrollbar-orange bordered-orange thin"
         style={expenses.length === 0 ? style1 : style2}
       >
-        {!loading ? (
-          expenses.length ? (
+         { expenses.length ? (
             <>
               {expenses.map((entry, key) => {
                 return (
@@ -109,20 +93,8 @@ function ListExpenses() {
             >
               <span>No Expenses For This Month</span>
             </div>
-          )
-        ) : (
-          <>
-            <div
-              style={{
-                margin: "80px",
-              }}
-            >
-              <Space size="middle">
-                <Spin size="large" />
-              </Space>
-            </div>
-          </>
-        )}
+          )}
+          
       </div>
     </div>
   );

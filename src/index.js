@@ -12,9 +12,12 @@ import "mdbreact/dist/css/mdb.css";
 import App from "./App";
 import "./App.css";
 import "antd/dist/antd.css";
-
+// Redux Store
 import { Provider } from "react-redux";
 import store from "./store";
+import config from "./config";
+
+config();
 
 ReactDOM.render(
   <BrowserRouter>

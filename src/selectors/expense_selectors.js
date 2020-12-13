@@ -1,0 +1,1 @@
+export const expense_selectors = ({ expense }) => expense;

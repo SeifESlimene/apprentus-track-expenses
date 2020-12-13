@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 // import { MDBIcon } from "mdbreact";
-import CustomInput from './CustomInput'
+import CustomInput from "./CustomInput";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchExpense } from "../actions/expense_actions";
+import moment from "moment";
 
 function Calendar({ SetDateHeader, inForm }) {
-  const [date, setDate] = useState(undefined);
+  const dispatch = useDispatch();
+  const handleChange = useCallback(
+    (date) => {
+      const year = moment(date).format("YYYY");
+      const month = moment(date).format("MM");
+      dispatch(fetchExpense(month, year));
+    },
+    [dispatch]
+  );
   const [isClicked, setIsClicked] = useState(false);
   const handleCalendarOpen = () => {
     setIsClicked(true);
@@ -35,10 +46,8 @@ function Calendar({ SetDateHeader, inForm }) {
   return (
     <div>
       <DatePicker
-        selected={date}
-        onChange={(date) => {
-          setDate(date);
-        }}
+        // selected={date}
+        onChange={(date) => handleChange(date)}
         dateFormat="MMMM - yyyy"
         customInput={<CustomInput isClicked={isClicked} />}
         showMonthYearPicker

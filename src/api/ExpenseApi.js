@@ -1,9 +1,8 @@
 import axios from "axios";
 
-const Expense = {};
 
-Expense.getExpenses = async (month, year) => {
-  const prefix = "http://localhost:5000/api/v1/expenses";
+export const apiFetchExpense = async (month, year) => {
+  const prefix = "/expenses";
   const res =
     year && month
       ? await axios.get(`${prefix}/${year}/${month}`)
@@ -11,5 +10,3 @@ Expense.getExpenses = async (month, year) => {
   const data = await res.data;
   return data;
 };
-
-export default Expense;
