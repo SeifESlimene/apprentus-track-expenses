@@ -4,15 +4,23 @@ import HeaderMain from "../components/HeaderMain";
 import ExpenseItem from "../components/ExpenseItem";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { expense_selectors } from "../selectors/expense_selectors";
+import {
+  expense_selectors,
+  expense_by_month_year,
+} from "../selectors/expense_selectors";
 import { fetchExpense } from "../actions/expense_actions";
 
 function ListExpenses() {
+  let i = 0;
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log("Render " + i);
     dispatch(fetchExpense());
   }, [dispatch]);
   const expenses = useSelector(expense_selectors);
+  const allMonth = useSelector(expense_by_month_year);
+  console.log("No" + i++, allMonth.year, allMonth);
+  console.log("No" + i++, expenses);
   const arrayAmount = expenses.map((entry) => {
     return entry.amount;
   });
@@ -50,7 +58,9 @@ function ListExpenses() {
             fontSize: "20px",
           }}
         >
-          {expenses.length ? moment(expenses[0].date).format("MMMM YYYY") : ""}
+          {allMonth &&
+            allMonth.year &&
+            moment(allMonth.month).format("MMMM") + " " + allMonth.year}
         </div>
         <div
           style={{

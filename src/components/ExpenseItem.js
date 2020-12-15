@@ -1,6 +1,6 @@
 import React from "react";
 import { MDBIcon } from "mdbreact";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, IdcardOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { deleteExpense } from "../actions/expense_actions";
 import { useDispatch } from "react-redux";
@@ -66,7 +66,7 @@ function ExpenseItem({ name, date, amount, approval, id, year, month }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          width: "30%",
+          width: "40%",
         }}
       >
         {approval === 1 ? (
@@ -106,7 +106,7 @@ function ExpenseItem({ name, date, amount, approval, id, year, month }) {
             alignItems: "center",
             fontSize: "20px",
             fontWeight: "bold",
-            width: "40%",
+            width: "30%",
           }}
         >
           <span>{amount}</span>
@@ -123,14 +123,37 @@ function ExpenseItem({ name, date, amount, approval, id, year, month }) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "#E5F3FE",
+              backgroundColor: "rgba(255,9,66,0.1)",
               borderRadius: "10px",
-              width: "37px",
-              height: "37px",
+              width: "43px",
+              height: "43px",
               marginRight: "5px",
             }}
           >
-            <Link to={`/expense?number=${id}`}>
+            <IdcardOutlined
+              onClick={handleDelete}
+              style={{ color: "rgba(255,9,66,0.9)", fontSize: "26px", cursor: "pointer" }}
+            />
+          </div>
+          <div
+            style={{
+              backgroundColor: "#E5F3FE",
+              borderRadius: "10px",
+              width: "43px",
+              height: "43px",
+              marginRight: "5px",
+            }}
+          >
+            <Link
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "43px",
+                height: "43px",
+              }}
+              to={`/expense?edit=${id}`}
+            >
               <MDBIcon
                 far
                 icon="edit"
@@ -149,13 +172,14 @@ function ExpenseItem({ name, date, amount, approval, id, year, month }) {
               alignItems: "center",
               backgroundColor: "#F1F2F7",
               borderRadius: "10px",
-              width: "37px",
-              height: "37px",
+              width: "43px",
+              height: "43px",
+              marginRight: "5px",
             }}
           >
             <DeleteOutlined
               onClick={handleDelete}
-              style={{ color: "#B9BDC9", fontSize: "22px", cursor: "pointer" }}
+              style={{ color: "#B9BDC9", fontSize: "26px", cursor: "pointer" }}
             />
           </div>
         </div>

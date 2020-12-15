@@ -173,3 +173,13 @@ select option:checked:after {
 .euro-icon {
   color: #ff835d;
 }
+
+.input-feedback {
+  color: red;
+  margin-top: 0.25rem;
+  font-weight: bold;
+}
+
+input.error {
+  border-color: red;
+}

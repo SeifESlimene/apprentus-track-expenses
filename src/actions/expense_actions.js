@@ -1,6 +1,7 @@
 import {
   FETCHING_EXPENSE,
   FETCH_EXPENSE_BY_ID,
+  FETCHING_EXPENSE_BY_MONTH_YEAR,
   SAVE_EXPENSE,
   EXPENSE_UPDATED,
   UPDATE_FAILED,
@@ -11,16 +12,31 @@ import {
 
 import {
   apiFetchExpense,
+  apiFetchExpenseByMonthYear,
   apiFetchExpenseById,
   apiUpdateExpense,
   apiDeleteExpense,
   apiSaveExpense,
 } from "../api/ExpenseApi";
 
-export const fetchExpense = (month, year) => {
+export const fetchExpense = () => {
   return (dispatch) => {
     dispatch({ type: FETCHING_EXPENSE });
-    apiFetchExpense(month, year)
+    apiFetchExpense()
+      .then((data) => {
+        dispatch({ type: FETCHED_SUCCESS, payload: data });
+      })
+      .catch((e) => {
+        dispatch({ type: FETCHED_FAILED });
+        console.log(e);
+      });
+  };
+};
+
+export const fetchExpenseByMonthYear = (month, year) => {
+  return (dispatch) => {
+    dispatch({ type: FETCHING_EXPENSE_BY_MONTH_YEAR, month, year });
+    apiFetchExpenseByMonthYear(month, year)
       .then((data) => {
         dispatch({ type: FETCHED_SUCCESS, payload: data });
       })

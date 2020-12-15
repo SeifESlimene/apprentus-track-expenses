@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomInput from "./CustomInput";
 import { useDispatch } from "react-redux";
-import { fetchExpense } from "../actions/expense_actions";
+import { fetchExpenseByMonthYear } from "../actions/expense_actions";
 import moment from "moment";
 
 function Calendar({ SetDateHeader, inForm }) {
@@ -13,7 +13,7 @@ function Calendar({ SetDateHeader, inForm }) {
     (date) => {
       const year = moment(date).format("YYYY");
       const month = moment(date).format("MM");
-      dispatch(fetchExpense(month, year));
+      dispatch(fetchExpenseByMonthYear(month, year));
       setDate(date);
     },
     [dispatch]

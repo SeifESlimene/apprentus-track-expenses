@@ -6,18 +6,28 @@ import {
   FETCHED_FAILED,
   UPDATE_FAILED,
   DELETE_EXPENSE,
-  SAVE_EXPENSE
+  SAVE_EXPENSE,
+  FETCHING_EXPENSE_BY_MONTH_YEAR,
 } from "../actions/types";
+
 const INITIAL_STATE = {
   fetching: false,
   expense: [],
+  allMonth: false,
 };
 
-// eslint-disable-next-line
-export default (state = INITIAL_STATE, action) => {
+const expense_reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCHING_EXPENSE:
-      return { ...state, fetching: true };
+      return { ...state, fetching: true, allMonth: true };
+    case FETCHING_EXPENSE_BY_MONTH_YEAR:
+      return {
+        ...state,
+        fetching: true,
+        allMonth: false,
+        month: action.month,
+        year: action.year,
+      };
     case FETCH_EXPENSE_BY_ID:
       return { ...state, fetching: true };
     case FETCHED_SUCCESS:
@@ -36,3 +46,5 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+export default expense_reducer;

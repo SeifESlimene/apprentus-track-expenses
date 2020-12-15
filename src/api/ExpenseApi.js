@@ -1,12 +1,17 @@
 import axios from "axios";
 
 // Fetch all expenses and Fetch expense by Month and year
-export const apiFetchExpense = async (month, year) => {
+export const apiFetchExpense = async () => {
   const prefix = "/expenses";
-  const res =
-    year && month
-      ? await axios.get(`${prefix}/${year}/${month}`)
-      : await axios.get(`${prefix}`);
+  const res = await axios.get(`${prefix}`);
+  const data = await res.data;
+  return data;
+};
+
+// Fetch all expenses and Fetch expense by Month and year
+export const apiFetchExpenseByMonthYear = async (month, year) => {
+  const prefix = "/expenses";
+  const res = await axios.get(`${prefix}/${year}/${month}`);
   const data = await res.data;
   return data;
 };
