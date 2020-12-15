@@ -73,7 +73,6 @@ export const apiUpdateExpense = async (
 // Delete expense
 export const apiDeleteExpense = async (id) => {
   const prefix = "/expenses";
-  console.log(id);
   const res = await axios.delete(`${prefix}/delete/${id}`);
   const data = await res.data;
   return data;

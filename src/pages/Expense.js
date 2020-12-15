@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderMain from "../components/HeaderMain";
 import Form from "../components/Form";
+import styled from "styled-components";
 
 function Expense() {
   return (
@@ -10,18 +11,18 @@ function Expense() {
       }}
     >
       <HeaderMain />
-      <div
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: "33px",
-          padding: "45px 85px",
-          margin: "20px 0",
-        }}
-      >
+      <Div>
         <Form />
-      </div>
+      </Div>
     </div>
   );
 }
+
+const Div = styled.div`
+  background-color: #fff;
+  border-radius: 33px;
+  padding: 45px 85px;
+  margin: 20px 0;
+`;
 
 export default Expense;

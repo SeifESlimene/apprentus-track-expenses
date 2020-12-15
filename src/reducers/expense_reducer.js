@@ -1,3 +1,4 @@
+// Import Our Actions Types
 import {
   FETCHING_EXPENSE,
   FETCH_EXPENSE_BY_ID,
@@ -10,12 +11,14 @@ import {
   FETCHING_EXPENSE_BY_MONTH_YEAR,
 } from "../actions/types";
 
+// Our Initial State
 const INITIAL_STATE = {
   fetching: false,
   expense: [],
   allMonth: false,
 };
 
+// Our Expense Reducer
 const expense_reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCHING_EXPENSE:
@@ -32,15 +35,15 @@ const expense_reducer = (state = INITIAL_STATE, action) => {
       return { ...state, fetching: true };
     case FETCHED_SUCCESS:
       return { ...state, fetching: false, expense: action.payload };
-    case EXPENSE_UPDATED:
-      return { ...state, fetching: false };
-    case DELETE_EXPENSE:
-      return { ...state, fetching: false };
     case FETCHED_FAILED:
+      return { ...state, fetching: false };
+    case SAVE_EXPENSE:
+      return { ...state, fetching: false };
+    case EXPENSE_UPDATED:
       return { ...state, fetching: false };
     case UPDATE_FAILED:
       return { ...state, fetching: false };
-    case SAVE_EXPENSE:
+    case DELETE_EXPENSE:
       return { ...state, fetching: false };
     default:
       return state;

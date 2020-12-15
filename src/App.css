@@ -176,10 +176,53 @@ select option:checked:after {
 
 .input-feedback {
   color: red;
-  margin-top: 0.25rem;
+  margin: 0.75rem 0;
   font-weight: bold;
 }
 
 input.error {
   border-color: red;
+}
+
+.containercard {
+  height: 481px !important;
+}
+
+.ant-picker-input > input::placeholder {
+  color: #6c757d !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
+.ant-picker-input > input {
+  font-size: 1rem !important;
+}
+
+.ant-picker-input:focus {
+  outline: 0 !important;
+}
+
+.ant-picker:hover,
+.ant-picker-focused {
+  border-color: #40a9ff !important;
+  border-right-width: 0px !important;
+}
+
+.ant-picker {
+  border: 0 !important;
+}
+
+.selectapproved:hover {
+  outline: 0;
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: #ff835d !important;
+  border-right-width: 1px !important;
+}
+
+.ant-picker-focused {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0px rgb(255, 255, 255) !important;
+  border-right-width: 0px !important;
 }

@@ -1,3 +1,4 @@
+// React
 import React from "react";
 import ReactDOM from "react-dom";
 // Navigation
@@ -20,7 +21,9 @@ import config from "./config";
 config();
 
 ReactDOM.render(
+  // Router Wrapper
   <BrowserRouter>
+    {/* Redux Wrapper */}
     <Provider store={store}>
       <App />
     </Provider>

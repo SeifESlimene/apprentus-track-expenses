@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 function ExpenseItem({ name, date, amount, approval, id, year, month }) {
   const dispatch = useDispatch();
   const handleDelete = () => {
-    console.log(id);
     dispatch(deleteExpense(id, month, year));
   };
   return (
@@ -130,10 +129,24 @@ function ExpenseItem({ name, date, amount, approval, id, year, month }) {
               marginRight: "5px",
             }}
           >
-            <IdcardOutlined
-              onClick={handleDelete}
-              style={{ color: "rgba(255,9,66,0.9)", fontSize: "26px", cursor: "pointer" }}
-            />
+            <Link
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "43px",
+                height: "43px",
+              }}
+              to={`/expense?view=${id}`}
+            >
+              <IdcardOutlined
+                style={{
+                  color: "rgba(255,9,66,0.9)",
+                  fontSize: "26px",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
           </div>
           <div
             style={{

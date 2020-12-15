@@ -28,7 +28,6 @@ export const fetchExpense = () => {
       })
       .catch((e) => {
         dispatch({ type: FETCHED_FAILED });
-        console.log(e);
       });
   };
 };
@@ -42,7 +41,6 @@ export const fetchExpenseByMonthYear = (month, year) => {
       })
       .catch((e) => {
         dispatch({ type: FETCHED_FAILED });
-        console.log(e);
       });
   };
 };
@@ -56,7 +54,6 @@ export const fetchExpenseById = (id) => {
       });
     } catch (e) {
       dispatch({ type: FETCHED_FAILED });
-      console.log(e);
     }
   };
 };
@@ -83,7 +80,6 @@ export const updateExpense = (
       })
       .catch((e) => {
         dispatch({ type: UPDATE_FAILED });
-        console.log(e);
       });
   };
 };

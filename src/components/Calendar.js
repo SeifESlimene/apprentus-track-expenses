@@ -1,23 +1,26 @@
+// Import React & Hooks
 import React, { useState, useCallback } from "react";
+// React Date Picker
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CustomInput from "./CustomInput";
+// React Redux
 import { useDispatch } from "react-redux";
+// Action
 import { fetchExpenseByMonthYear } from "../actions/expense_actions";
+// Moment
 import moment from "moment";
+// Custom Input For React DatePicker
+import CustomInput from "./CustomInput";
 
-function Calendar({ SetDateHeader, inForm }) {
+function Calendar() {
   const dispatch = useDispatch();
   const [date, setDate] = useState(undefined);
-  const handleChange = useCallback(
-    (date) => {
-      const year = moment(date).format("YYYY");
-      const month = moment(date).format("MM");
-      dispatch(fetchExpenseByMonthYear(month, year));
-      setDate(date);
-    },
-    [dispatch]
-  );
+  const handleChange = (date) => {
+    const year = moment(date).format("YYYY");
+    const month = moment(date).format("MM");
+    dispatch(fetchExpenseByMonthYear(month, year));
+    setDate(date);
+  };
   const [isClicked, setIsClicked] = useState(false);
   const handleCalendarOpen = () => {
     setIsClicked(true);

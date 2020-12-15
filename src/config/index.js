@@ -1,7 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
+// Base URL For All Our API Requests
 const config = () => {
-  axios.defaults.baseURL = 'http://localhost:5000/api/v1';
+  axios.defaults.baseURL = process.env.REACT_APP_BASE_URI;
 };
 
 export default config;

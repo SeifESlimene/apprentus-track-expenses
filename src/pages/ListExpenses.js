@@ -1,29 +1,37 @@
+// React
 import React, { useEffect } from "react";
+// Design
 import { MDBBox } from "mdbreact";
-import HeaderMain from "../components/HeaderMain";
-import ExpenseItem from "../components/ExpenseItem";
+// Moment
 import moment from "moment";
+// React Redux
 import { useSelector, useDispatch } from "react-redux";
+// Selectors
 import {
   expense_selectors,
   expense_by_month_year,
 } from "../selectors/expense_selectors";
+// Redux Action
 import { fetchExpense } from "../actions/expense_actions";
+// Our Components
+import HeaderMain from "../components/HeaderMain";
+import ExpenseItem from "../components/ExpenseItem";
 
 function ListExpenses() {
-  let i = 0;
+  // Dispatch Fetch All Months Action To The Store
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("Render " + i);
     dispatch(fetchExpense());
   }, [dispatch]);
+  // All Month Selector
   const expenses = useSelector(expense_selectors);
-  const allMonth = useSelector(expense_by_month_year);
-  console.log("No" + i++, allMonth.year, allMonth);
-  console.log("No" + i++, expenses);
+  // By Month Selector
+  const byMonth = useSelector(expense_by_month_year);
+  // Total Amount
   const arrayAmount = expenses.map((entry) => {
     return entry.amount;
   });
+
   const style1 = {
     maxHeight: "481px",
     overflow: "auto",
@@ -58,9 +66,9 @@ function ListExpenses() {
             fontSize: "20px",
           }}
         >
-          {allMonth &&
-            allMonth.year &&
-            moment(allMonth.month).format("MMMM") + " " + allMonth.year}
+          {byMonth &&
+            byMonth.year &&
+            moment(byMonth.month).format("MMMM") + " " + byMonth.year}
         </div>
         <div
           style={{
