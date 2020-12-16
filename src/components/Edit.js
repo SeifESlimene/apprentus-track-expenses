@@ -50,14 +50,16 @@ function Edit({
   const expense_user = useSelector(expense_selectors);
 
   useEffect(() => {
-    const fields = ["name", "date", "description", "amount", "approved"];
-    fields.map((item, index) => {
-      if (index === 1) {
-        setFieldValue(item, moment(expense_user[0][item]));
-      } else {
-        setFieldValue(item, expense_user[0][item]);
-      }
-    });
+    if (expense_user.length) {
+      const fields = ["name", "date", "description", "amount", "approved"];
+      fields.map((item, index) => {
+        if (index === 1) {
+          setFieldValue(item, moment(expense_user[0][item]));
+        } else {
+          setFieldValue(item, expense_user[0][item]);
+        }
+      });
+    }
     // fields.forEach((field) => {
     // setFieldValue(field, expense_user[field])});
   }, [expense_user]);

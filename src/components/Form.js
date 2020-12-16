@@ -53,30 +53,31 @@ function Form() {
 
   // use
   const expense_user = useSelector(expense_selectors);
-  
+
   // dispatch action to the store to retrieve the user by its ID
   useEffect(() => {
-    console.log(view);
     if (isEditMode) {
       dispatch(fetchExpenseById(id));
     }
     if (isViewMode) {
       dispatch(fetchExpenseById(view));
     }
-  }, [view, isViewMode,expense_user]);
-
+  }, []);
 
   // set user in state
   useEffect(() => {
     if (isEditMode || isViewMode) {
-      console.log(expense_user);
-      setFormData({
-        name: expense_user && expense_user[0].name,
-        date: expense_user && moment(expense_user[0].date).format("YYYY-MM-DD"),
-        description: expense_user && expense_user[0].description,
-        amount: expense_user && expense_user[0].amount,
-        approved: expense_user && expense_user[0].approved === 1 ? "Yes" : "No",
-      });
+      if (expense_user.length) {
+        setFormData({
+          name: expense_user && expense_user[0].name,
+          date:
+            expense_user && moment(expense_user[0].date).format("YYYY-MM-DD"),
+          description: expense_user && expense_user[0].description,
+          amount: expense_user && expense_user[0].amount,
+          approved:
+            expense_user && expense_user[0].approved === 1 ? "Yes" : "No",
+        });
+      }
     }
   }, [expense_user]);
 
