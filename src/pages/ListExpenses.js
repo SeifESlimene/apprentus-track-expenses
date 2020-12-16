@@ -28,9 +28,11 @@ function ListExpenses() {
   // By Month Selector
   const byMonth = useSelector(expense_by_month_year);
   // Total Amount
-  const arrayAmount = expenses.map((entry) => {
-    return entry.amount;
-  });
+  if (expenses.length) {
+    const arrayAmount = expenses.map((entry) => {
+      return entry.amount;
+    });
+  }
 
   return (
     <div className="list-expenses">
@@ -42,9 +44,7 @@ function ListExpenses() {
             moment(byMonth.month).format("MMMM") + " " + byMonth.year}
         </div>
         <div className="list-expenses-info-transactions">
-          <span>
-            Number of transactions : {expenses.length}
-          </span>
+          <span>Number of transactions : {expenses.length}</span>
           <span className="ml-5">
             {"Value : " +
               arrayAmount.reduce(
