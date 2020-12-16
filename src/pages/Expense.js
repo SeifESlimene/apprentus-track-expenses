@@ -5,24 +5,13 @@ import styled from "styled-components";
 
 function Expense() {
   return (
-    <div
-      style={{
-        backgroundColor: "#F1F2F7",
-      }}
-    >
+    <div className="expense">
       <HeaderMain />
-      <Div>
+      <div className="form-container">
         <Form />
-      </Div>
+      </div>
     </div>
   );
 }
-
-const Div = styled.div`
-  background-color: #fff;
-  border-radius: 33px;
-  padding: 45px 85px;
-  margin: 20px 0;
-`;
 
 export default Expense;

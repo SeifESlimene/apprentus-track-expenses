@@ -1,6 +1,10 @@
 import React from "react";
 import { MDBIcon } from "mdbreact";
-import { DeleteOutlined, IdcardOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  IdcardOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { deleteExpense } from "../actions/expense_actions";
 import { useDispatch } from "react-redux";
@@ -42,11 +46,14 @@ function ExpenseItem({ name, date, amount, approval, id, year, month }) {
           </div>
           <div className="expense-item-edit-container">
             <Link to={`/expense?edit=${id}`}>
-              <MDBIcon far icon="edit" className="expense-item-edit-logo" />
+              <EditOutlined className="expense-item-edit-logo" />
             </Link>
           </div>
-          <div>
-            <DeleteOutlined onClick={handleDelete} />
+          <div className="expense-item-delete-container">
+            <DeleteOutlined
+              onClick={handleDelete}
+              className="expense-item-delete-logo"
+            />
           </div>
         </div>
       </div>

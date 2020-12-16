@@ -36,13 +36,15 @@ function ListExpenses() {
     <div className="list-expenses">
       <HeaderMain />
       <MDBBox className="list-expenses-info">
-        <div className="list-expenses-info-date">
+        <div className="list-expenses-info-date mr-5">
           {byMonth &&
             byMonth.year &&
             moment(byMonth.month).format("MMMM") + " " + byMonth.year}
         </div>
-        <div ClassName="list-expenses-info-transactions">
-          <span>Number of transactions : {expenses.length}</span>
+        <div className="list-expenses-info-transactions">
+          <span>
+            Number of transactions : {expenses.length}
+          </span>
           <span className="ml-5">
             {"Value : " +
               arrayAmount.reduce(
@@ -57,8 +59,8 @@ function ListExpenses() {
         className={`${
           expenses.length === 0
             ? "list-expenses-body-nempty"
-            : "list-expenses-body-empty"
-        }scrollbar scrollbar-orange bordered-orange thin`}
+            : "list-expenses-body-empty "
+        } scrollbar scrollbar-orange bordered-orange thin`}
       >
         {expenses.length ? (
           <>

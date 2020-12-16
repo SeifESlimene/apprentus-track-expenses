@@ -7,7 +7,7 @@ function HeaderMain() {
   return (
     <div>
       <div className="header-lg">
-        <MDBBox class="header-title">
+        <MDBBox className="header-title">
           <svg
             width="75"
             height="75"

@@ -1,5 +1,5 @@
 // DESIGN
-import { MDBInput, MDBBtn } from "mdbreact";
+import { MDBInput, MDBBtn, MDBAlert } from "mdbreact";
 import { DatePicker, Select } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 
@@ -21,6 +21,11 @@ function Add({
 }) {
   return (
     <form onSubmit={handleSubmit}>
+      {isSubmitting && (
+        <MDBAlert color="success" className="mb-4">
+          Expense Added successfully!
+        </MDBAlert>
+      )}
       <MDBInput
         type="text"
         onBlur={handleBlur}
@@ -97,7 +102,7 @@ function Add({
       >
         Add Expense
       </MDBBtn>
-      <DisplayFormikState value={values} />
+      {/* <DisplayFormikState value={values} /> */}
     </form>
   );
 }

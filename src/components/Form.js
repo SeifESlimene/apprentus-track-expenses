@@ -26,6 +26,7 @@ import { expense_selectors } from "../selectors/expense_selectors";
 
 // MOMENT
 import moment from "moment";
+
 import Edit from "./Edit";
 import View from "./View";
 import Add from "./Add";
@@ -52,17 +53,18 @@ function Form() {
 
   // use
   const expense_user = useSelector(expense_selectors);
-
+  
   // dispatch action to the store to retrieve the user by its ID
   useEffect(() => {
+    console.log(view);
     if (isEditMode) {
       dispatch(fetchExpenseById(id));
     }
     if (isViewMode) {
-      console.log(expense_user);
       dispatch(fetchExpenseById(view));
     }
-  }, []);
+  }, [view, isViewMode,expense_user]);
+
 
   // set user in state
   useEffect(() => {

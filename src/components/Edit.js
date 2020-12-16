@@ -1,5 +1,5 @@
 // REACT
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // NAVIGATION
 import { useLocation } from "react-router-dom";
@@ -8,8 +8,8 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 // DESIGN
-import { MDBInput, MDBBtn } from "mdbreact";
-import { DatePicker, Select, Card } from "antd";
+import { MDBInput, MDBBtn, MDBAlert } from "mdbreact";
+import { DatePicker, Select } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 
 // FORM VALIDATION
@@ -20,6 +20,9 @@ import { fetchExpenseById } from "../actions/expense_actions";
 
 // SELECTORS
 import { expense_selectors } from "../selectors/expense_selectors";
+
+// MOMENT
+import moment from "moment";
 
 // DESIGN
 const { Option } = Select;
@@ -49,7 +52,11 @@ function Edit({
   useEffect(() => {
     const fields = ["name", "date", "description", "amount", "approved"];
     fields.map((item, index) => {
-      setFieldValue(item, expense_user[0][item]);
+      if (index === 1) {
+        setFieldValue(item, moment(expense_user[0][item]));
+      } else {
+        setFieldValue(item, expense_user[0][item]);
+      }
     });
     // fields.forEach((field) => {
     // setFieldValue(field, expense_user[field])});
@@ -57,11 +64,11 @@ function Edit({
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* {isValidated && (
+      {isSubmitting && (
         <MDBAlert color="success" className="mb-4">
           Expense Edited successfully!
         </MDBAlert>
-      )} */}
+      )}
       <MDBInput
         type="text"
         onBlur={handleBlur}
@@ -85,7 +92,7 @@ function Edit({
         // bordered={false}
         placeholder="Date of the expense"
         name="date"
-        // value={values.date}
+        value={values.date}
         suffixIcon={<CalendarOutlined className="calendar-icon" />}
         className="date-picker"
       />
@@ -138,7 +145,7 @@ function Edit({
       >
         Edit Expense
       </MDBBtn>
-      <DisplayFormikState value={values} />
+      {/* <DisplayFormikState value={values} /> */}
     </form>
   );
 }
