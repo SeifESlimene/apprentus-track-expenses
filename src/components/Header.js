@@ -4,18 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <>
-      <header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: "150px",
-          backgroundColor: "#F1F2F7",
-          color: "#000",
-          width: "100%",
-          padding: "0 100px",
-        }}
-      >
+      <header className="main-header">
         <svg
           width="210"
           height="110"
@@ -33,22 +22,8 @@ function Header() {
             fill="#FF480E"
           />
         </svg>
-        <ul
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            listStyleType: "none",
-          }}
-        >
-          <li
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "15px",
-            }}
-          >
+        <ul>
+          <li>
             <Link to="/list">
               <svg
                 width="75"

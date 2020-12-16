@@ -8,24 +8,12 @@ function Main() {
     <>
       <Switch>
         <Route path="/expense">
-          <div
-            style={{
-              minHeight: "calc(100vh - 150px)",
-              backgroundColor: "#F1F2F7",
-              padding: "100px 100px 0",
-            }}
-          >
+          <div className="main-container">
             <Expense />
           </div>
         </Route>
         <Route path="/list">
-          <div
-            style={{
-              minHeight: "calc(100vh - 150px)",
-              backgroundColor: "#F1F2F7",
-              padding: "100px 100px 0",
-            }}
-          >
+          <div className="main-container">
             <ListExpenses />
           </div>
         </Route>

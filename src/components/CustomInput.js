@@ -5,7 +5,6 @@ const CustomInput = ({ value, onClick, isClicked }, ref) => {
   return (
     <button
       className="example-custom-input"
-      style={{ width: "225px", padding: "10px 20px" }}
       onClick={onClick}
     >
       <MDBIcon far icon="calendar" />

@@ -32,51 +32,16 @@ function ListExpenses() {
     return entry.amount;
   });
 
-  const style1 = {
-    maxHeight: "481px",
-    overflow: "auto",
-    padding: "0 10px 0 0",
-    display: "Flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  };
-  const style2 = {
-    maxHeight: "481px",
-    overflow: "auto",
-    padding: "0 10px 0 0",
-  };
   return (
-    <div
-      style={{
-        backgroundColor: "#F1F2F7",
-      }}
-    >
+    <div className="list-expenses">
       <HeaderMain />
-      <MDBBox
-        display="flex"
-        className="mt-5 mb-3"
-        style={{ justifyContent: "space-between", alignItems: "center" }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            fontFamily: "roboto",
-            fontWeight: "bold",
-            fontSize: "20px",
-          }}
-        >
+      <MDBBox className="list-expenses-info">
+        <div className="list-expenses-info-date">
           {byMonth &&
             byMonth.year &&
             moment(byMonth.month).format("MMMM") + " " + byMonth.year}
         </div>
-        <div
-          style={{
-            textAlign: "center",
-            fontFamily: "roboto",
-            fontSize: "20px",
-          }}
-        >
+        <div ClassName="list-expenses-info-transactions">
           <span>Number of transactions : {expenses.length}</span>
           <span className="ml-5">
             {"Value : " +
@@ -89,8 +54,11 @@ function ListExpenses() {
         </div>
       </MDBBox>
       <div
-        className="scrollbar scrollbar-orange bordered-orange thin"
-        style={expenses.length === 0 ? style1 : style2}
+        className={`${
+          expenses.length === 0
+            ? "list-expenses-body-nempty"
+            : "list-expenses-body-empty"
+        }scrollbar scrollbar-orange bordered-orange thin`}
       >
         {expenses.length ? (
           <>
@@ -110,13 +78,7 @@ function ListExpenses() {
             })}
           </>
         ) : (
-          <div
-            style={{
-              color: "#B9BDC9",
-              fontSize: "20px",
-              margin: "25px",
-            }}
-          >
+          <div className="no-expenses">
             <span>No Expenses For This Month</span>
           </div>
         )}

@@ -10,13 +10,8 @@ function RightMenu() {
     setOrangeStroke("#B9BDC9");
   };
   return (
-    <div
-      style={{
-        width: "30%",
-        height: "100vh",
-      }}
-    >
-      <div style={{ paddingTop: "35px", textAlign: "center" }}>
+    <div className="right-menu">
+      <div className="right-menu-container">
         <svg
           width="67"
           height="67"
@@ -42,41 +37,13 @@ function RightMenu() {
             </clipPath>
           </defs>
         </svg>
-        <div
-          style={{
-            textAlign: "center",
-            margin: "10px 0 20px",
-            fontFamily: "roboto",
-            fontWeight: "bold",
-            fontSize: "20px",
-          }}
-        >
-          John Doe
-        </div>
-        <div
-          style={{
-            margin: "70px auto 0",
-            width: "75px",
-            height: "75px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "15px",
-          }}
-        >
+        <div className="right-menu-user">John Doe</div>
+        <div className="right-menu-add-btn">
           <Link
             to="/expense"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            style={{
-              height: "100%",
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textDecoration: "none",
-              color: "#B9BDC9",
-            }}
+            className="right-menu-add-btn"
           >
             <svg
               width="75"

@@ -6,14 +6,8 @@ import { Switch, Route } from "react-router-dom";
 function HeaderMain() {
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <MDBBox display="flex" alignItems="center">
+      <div className="header-lg">
+        <MDBBox class="header-title">
           <svg
             width="75"
             height="75"
@@ -26,20 +20,12 @@ function HeaderMain() {
               fill="#F7803E"
             />
           </svg>
-          <span
-            className="ml-4"
-            style={{
-              fontWeight: "bold",
-              fontSize: "25px",
-            }}
-          >
-            Manage Travel Expenses
-          </span>
+          <span>Manage Travel Expenses</span>
         </MDBBox>
         <MDBBox display="flex" alignItems="center">
           <Switch>
             <Route path="/list">
-              <Calendar/>
+              <Calendar />
             </Route>
           </Switch>
         </MDBBox>

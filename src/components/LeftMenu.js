@@ -4,7 +4,7 @@ import Main from "./Main";
 
 function LeftMenu() {
   return (
-    <div style={{ width: "70%" }}>
+    <div className="left-menu">
       <Header />
       <Main />
     </div>
