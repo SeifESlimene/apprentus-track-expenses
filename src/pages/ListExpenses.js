@@ -20,19 +20,17 @@ import ExpenseItem from "../components/ExpenseItem";
 function ListExpenses() {
   // Dispatch Fetch All Months Action To The Store
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchExpense());
-  }, [dispatch]);
   // All Month Selector
   const expenses = useSelector(expense_selectors);
+  useEffect(() => {
+    dispatch(fetchExpense());
+  }, []);
   // By Month Selector
   const byMonth = useSelector(expense_by_month_year);
   // Total Amount
-  if (expenses.length) {
-    const arrayAmount = expenses.map((entry) => {
-      return entry.amount;
-    });
-  }
+  const arrayAmount = expenses.map((entry) => {
+    return entry.amount;
+  });
 
   return (
     <div className="list-expenses">
@@ -46,12 +44,13 @@ function ListExpenses() {
         <div className="list-expenses-info-transactions">
           <span>Number of transactions : {expenses.length}</span>
           <span className="ml-5">
-            {expenses.length && "Value : " +
-              arrayAmount.reduce(
-                (accumulator, current) => accumulator + current,
-                0
-              ) +
-              "€"}
+            {expenses.length &&
+              "Value : " +
+                arrayAmount.reduce(
+                  (accumulator, current) => accumulator + current,
+                  0
+                ) +
+                "€"}
           </span>
         </div>
       </MDBBox>
