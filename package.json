@@ -4,6 +4,7 @@
   "engines": {
     "node": "15.x"
   },
+  "proxy": "https://apprentus-track-expenses-back.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
