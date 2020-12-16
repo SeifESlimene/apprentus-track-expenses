@@ -3,6 +3,9 @@ import { MDBInput, MDBBtn, MDBAlert } from "mdbreact";
 import { DatePicker, Select } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 
+// NAVIGATION
+import { useHistory } from "react-router-dom";
+
 // FORM VALIDATION
 import { DisplayFormikState } from "./helper.js";
 
@@ -19,13 +22,11 @@ function Add({
   handleBlur,
   handleSubmit,
 }) {
+  // History API
+  let history = useHistory();
   return (
     <form onSubmit={handleSubmit}>
-      {isSubmitting && (
-        <MDBAlert color="success" className="mb-4">
-          Expense Added successfully!
-        </MDBAlert>
-      )}
+      {isSubmitting && history.push("/list")}
       <MDBInput
         type="text"
         onBlur={handleBlur}

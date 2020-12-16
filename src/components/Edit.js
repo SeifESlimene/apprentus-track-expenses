@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 // NAVIGATION
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 // STORE
 import { useDispatch, useSelector } from "react-redux";
@@ -37,8 +37,11 @@ function Edit({
   handleBlur,
   handleSubmit,
 }) {
+  // Location API
   const location = useLocation();
   const id = new URLSearchParams(location.search).get("edit");
+  // History API
+  let history = useHistory();
   // use Dispatch
   const dispatch = useDispatch();
 
@@ -66,11 +69,7 @@ function Edit({
 
   return (
     <form onSubmit={handleSubmit}>
-      {isSubmitting && (
-        <MDBAlert color="success" className="mb-4">
-          Expense Edited successfully!
-        </MDBAlert>
-      )}
+      {isSubmitting && history.push("/list")}
       <MDBInput
         type="text"
         onBlur={handleBlur}
