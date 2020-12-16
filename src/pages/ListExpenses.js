@@ -46,7 +46,7 @@ function ListExpenses() {
         <div className="list-expenses-info-transactions">
           <span>Number of transactions : {expenses.length}</span>
           <span className="ml-5">
-            {"Value : " +
+            {expenses.length && "Value : " +
               arrayAmount.reduce(
                 (accumulator, current) => accumulator + current,
                 0
